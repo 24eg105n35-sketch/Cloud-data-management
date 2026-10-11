@@ -3,7 +3,7 @@ import Login from "./Login";
 import Signup from "./Signup";
 import "./App.css";
 
-const API = "http://localhost:8080/api";
+const API = import.meta.env.VITE_API_URL;
 
 // =========================================================
 // SEARCH PAGE
@@ -2261,7 +2261,7 @@ function App() {
         switch (activePage) {
 
             case "add":
-                return <AddRecord />;
+                return AddRecord();
 
             case "records":
                 return <RecordsPage />;
