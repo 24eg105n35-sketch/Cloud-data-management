@@ -1,3 +1,4 @@
+
 package com.clouddata.security;
 
 import java.util.List;
@@ -34,7 +35,6 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
 
-                // Enable CORS for React frontend
                 .cors(cors ->
                         cors.configurationSource(
                                 corsConfigurationSource()
@@ -60,12 +60,12 @@ public class SecurityConfig {
                                 "/api/auth/**"
                         ).permitAll()
 
-                        // All other API endpoints require JWT
+                        // Other API endpoints require JWT
                         .requestMatchers(
                                 "/api/**"
                         ).authenticated()
 
-                        // Other requests are allowed
+                        // Allow non-API routes
                         .anyRequest().permitAll()
                 )
 
@@ -83,8 +83,12 @@ public class SecurityConfig {
         CorsConfiguration configuration =
                 new CorsConfiguration();
 
+        // Allow local development and deployed Vercel frontend
         configuration.setAllowedOrigins(
-                List.of("http://localhost:5173")
+                List.of(
+                        "http://localhost:5173",
+                        "https://cloud-data-management-bplustree.vercel.app"
+                )
         );
 
         configuration.setAllowedMethods(
