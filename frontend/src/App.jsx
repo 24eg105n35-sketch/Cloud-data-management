@@ -248,7 +248,7 @@ function App() {
         try {
 
             const response = await authFetch(
-                `${API}/auth/account`,
+                `${API}/api/auth/account`,
                 {
                     method: "DELETE",
                 }
@@ -365,9 +365,9 @@ function App() {
                 statsResponse,
                 treeResponse,
             ] = await Promise.all([
-                authFetch(`${API}/records`),
-                authFetch(`${API}/tree/statistics`),
-                authFetch(`${API}/tree`),
+                authFetch(`${API}/api/records`),
+                authFetch(`${API}/api/tree/statistics`),
+                authFetch(`${API}/api/tree`),
             ]);
 
             if (
@@ -470,7 +470,7 @@ function App() {
         try {
 
             const response = await authFetch(
-                `${API}/records`,
+                `${API}/api/records`,
                 {
                     method: "POST",
 
@@ -560,11 +560,11 @@ function App() {
                 pathResponse,
             ] = await Promise.all([
                 authFetch(
-                    `${API}/records/${key}`
+                    `${API}/api/records/${key}`
                 ),
 
                 authFetch(
-                    `${API}/tree/search-path/${key}`
+                    `${API}/api/tree/search-path/${key}`
                 ),
             ]);
 
@@ -696,7 +696,7 @@ function App() {
         try {
 
             const response = await authFetch(
-                `${API}/records/range?startKey=${start}&endKey=${end}`
+                `${API}/api/records/range?startKey=${start}&endKey=${end}`
             );
 
             if (!response.ok) {
@@ -752,7 +752,7 @@ function App() {
 
             const response =
                 await authFetch(
-                    `${API}/records/${key}`,
+                    `${API}/api/records/${key}`,
                     {
                         method: "DELETE",
                     }
@@ -824,7 +824,7 @@ function App() {
 
                 const response =
                     await authFetch(
-                        `${API}/records/${targetKey}`
+                        `${API}/api/records/${targetKey}`
                     );
 
                 if (!response.ok) {
